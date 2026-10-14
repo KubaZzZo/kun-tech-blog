@@ -1,6 +1,7 @@
 // edit https://github.com/lawvs/lawvs.github.io/blob/dba2e51e312765f8322ee87755b4e9c22b520048/src/pages/rss.xml.ts
 import rss from '@astrojs/rss';
 import { siteConfig } from '@constants/site-config';
+import { withBase } from '@lib/base-path';
 import { getCategoryArr, getPostSlug, getSortedPosts } from '@lib/content';
 import { encodeSlug } from '@lib/route';
 import { buildRssItemFields } from '@lib/rss-utils';
@@ -19,9 +20,9 @@ export async function GET(context: APIContext) {
   const response = await rss({
     title: siteConfig.title,
     description: siteConfig.subtitle || 'No description',
-    site,
+    site: new URL(withBase('/'), site),
     trailingSlash: false,
-    stylesheet: '/rss/feed.xsl', // https://docs.astro.build/en/recipes/rss/#adding-a-stylesheet
+    stylesheet: withBase('/rss/feed.xsl'), // https://docs.astro.build/en/recipes/rss/#adding-a-stylesheet
     items: posts.slice(0, 20).map((post: BlogPost) => {
       // 获取分类数组
       const categoryArr = getCategoryArr(post.data.categories?.[0]);
@@ -35,7 +36,7 @@ export async function GET(context: APIContext) {
       ];
 
       const postSlug = getPostSlug(post);
-      const postLink = `/post/${encodeSlug(postSlug)}`;
+      const postLink = withBase(`/post/${encodeSlug(postSlug)}`);
       const { title, description, content } = buildRssItemFields(post, defaultLocale);
 
       return {

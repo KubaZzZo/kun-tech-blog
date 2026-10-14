@@ -9,11 +9,12 @@
  * point to root-level URLs (e.g., /post/xxx) regardless of the current locale.
  * A future iteration could use custom result rendering to prepend locale prefix.
  */
+import { withBase } from '@lib/base-path';
 import { getHtmlLang, getLocaleFromUrl, t } from '@/i18n';
 
 const locale = getLocaleFromUrl(Astro.url.pathname);
 const lang = getHtmlLang(locale);
-const bundlePath = `${import.meta.env.BASE_URL}pagefind/`;
+const bundlePath = withBase('/pagefind/');
 ---
 
 <link id="pagefind-search-styles" rel="stylesheet" data-href={`${bundlePath}pagefind-component-ui.css`} disabled />
@@ -21,7 +22,7 @@ const bundlePath = `${import.meta.env.BASE_URL}pagefind/`;
 <div id="search-component-portal" data-bundle-path={bundlePath} data-loading={t(locale, 'common.loading')} data-load-error={t(locale, 'search.loadError')}>
   <div id="search-for-dialog">
     <output data-search-loading class="block px-4 py-5 text-muted-foreground text-sm">{t(locale, 'common.loading')}</output>
-    <pagefind-config lang={lang} bundle-path={bundlePath}></pagefind-config>
+    <pagefind-config lang={lang} bundle-path={bundlePath} base-url={withBase('/')}></pagefind-config>
     <pagefind-searchbox class="pagefind-search" placeholder={t(locale, 'search.placeholder')} hide-shortcut show-keyboard-hints="false"></pagefind-searchbox>
   </div>
 </div>

@@ -2,6 +2,7 @@
 import FooterAnnouncementEntry from '@components/announcement/FooterAnnouncementEntry';
 import { MAX_WIDTH } from '@constants/layout';
 import { icpConfig, siteConfig, umamiSiteStatsConfig } from '@constants/site-config';
+import { withBase } from '@lib/base-path';
 import { getSiteStats } from '@lib/stats';
 import { cn } from '@lib/utils';
 import { Icon } from 'astro-icon/components';
@@ -97,9 +98,9 @@ const startYear = siteConfig?.startYear ?? currentYear;
     )}
 
     <div class="text-muted-foreground/80 flex items-center gap-3 text-xs">
-      <a class="footer-link" href="/blog-source.tar.gz" download>下载本站源码</a>
+      <a class="footer-link" href={withBase('/blog-source.tar.gz')} download>下载本站源码</a>
       <span aria-hidden="true">·</span>
-      <a class="footer-link" href="/post/git-writing-guide">Git 发文指南</a>
+      <a class="footer-link" href={withBase('/post/git-writing-guide')}>Git 发文指南</a>
     </div>
 
     <!-- Powered By -->

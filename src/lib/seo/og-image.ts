@@ -1,3 +1,4 @@
+import { withBase } from '@lib/base-path';
 import { siteConfig } from '@lib/config/site';
 
 /**
@@ -10,5 +11,5 @@ import { siteConfig } from '@lib/config/site';
  */
 export function getOgImageUrl(cover: string | undefined, site: URL | undefined): string | undefined {
   const imagePath = cover || siteConfig.defaultOgImage || siteConfig.avatar;
-  return imagePath && site ? new URL(imagePath, site).href : undefined;
+  return imagePath && site ? new URL(withBase(imagePath), site).href : undefined;
 }

@@ -1,5 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
+import { withBase } from '@lib/base-path';
 import { resolveResponsiveImage, responsiveImageQuality } from '@lib/responsive-image';
 import type { HTMLAttributes } from 'astro/types';
 
@@ -26,4 +27,4 @@ const image = await resolveResponsiveImage(src, maxWidth);
     quality={responsiveImageQuality}
     pictureAttributes={{ class: 'contents' }}
   />
-) : <img {...attributes} src={src} alt={alt} />}
+) : <img {...attributes} src={withBase(src)} alt={alt} />}

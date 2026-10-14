@@ -1,12 +1,15 @@
 ---
+import { withBase } from '@lib/base-path';
+
 interface Props {
   locale: string;
 }
 
-const fonts =
+const fontPaths =
   Astro.props.locale === 'ja'
     ? ['/fonts/GenJyuuGothic-P-Regular/result.css', '/fonts/GenJyuuGothic-P-Bold/result.css']
     : ['/fonts/ChillRoundFRegular/result.css', '/fonts/ChillRoundFBold/result.css'];
+const fonts = fontPaths.map((href) => withBase(href));
 ---
 
 {fonts.map(href => <meta name="koharu-font" content={href} data-rounded-font />)}

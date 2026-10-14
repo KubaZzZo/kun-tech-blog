@@ -1,4 +1,5 @@
 import { siteConfig, socialConfig } from '@constants/site-config';
+import { withBase } from '@lib/base-path';
 import type { APIContext } from 'astro';
 import { capitalize } from 'es-toolkit';
 
@@ -26,7 +27,7 @@ export async function GET(_context: APIContext) {
                 <title><xsl:value-of select="/rss/channel/title" /> - RSS Feed</title>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-                <link rel="stylesheet" type="text/css" href="/rss/feed.css" />
+                <link rel="stylesheet" type="text/css" href="${withBase('/rss/feed.css')}" />
                 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
                     rel="stylesheet" />
                 <link

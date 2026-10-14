@@ -1,5 +1,6 @@
 ---
 import { getImage } from 'astro:assets';
+import { withBase } from '@lib/base-path';
 import {
   defaultHeroImage,
   portraitHeroMedia,
@@ -50,4 +51,4 @@ const images = hero
     <source srcset={images[0].srcSet.attribute} sizes={attributes.sizes} type="image/avif" />
     <img src={images[1].src} srcset={images[1].srcSet.attribute} {...images[1].attributes} />
   </picture>
-) : <img {...attributes} src={defaultHeroImage} alt={alt} />}
+) : <img {...attributes} src={withBase(defaultHeroImage)} alt={alt} />}

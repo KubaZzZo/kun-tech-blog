@@ -1,4 +1,5 @@
 import type { ImageMetadata } from 'astro';
+import { stripBase, withBase } from './base-path';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/public/img/**/*.{avif,jpg,jpeg,png,webp}');
 
@@ -14,11 +15,12 @@ export const portraitHeroTransform = {
   fit: 'cover' as const,
   position: 'centre',
 };
-export const defaultHeroSrcset =
-  '/img/site_header_800.webp 800w, /img/site_header_1200.webp 1200w, /img/site_header_1600.webp 1600w, /img/site_header_1920.webp 1928w';
+export const defaultHeroSrcset = [800, 1200, 1600, 1920]
+  .map((width) => `${withBase(`/img/site_header_${width}.webp`)} ${width === 1920 ? 1928 : width}w`)
+  .join(', ');
 
 export async function resolveResponsiveImage(src: string, maxWidth = 1600) {
-  const image = await images[`/public${src}`]?.();
+  const image = await images[`/public${stripBase(src)}`]?.();
   if (!image) return undefined;
   const width = Math.min(maxWidth, image.default.width);
   const widths = [...new Set([400, 800, 1200, width].filter((candidate) => candidate <= width))];

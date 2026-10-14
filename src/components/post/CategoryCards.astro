@@ -4,6 +4,7 @@ import { Button } from '@components/ui/button';
 import { categoryMap } from '@constants/category';
 import { Routes } from '@constants/router';
 import { siteConfig } from '@constants/site-config';
+import { withBase } from '@lib/base-path';
 import {
   type Category,
   getCategoryByLink,
@@ -66,7 +67,7 @@ const categoryPosts: CategoryWithPosts[] = await Promise.all(
           <div slot="front" class="flex-center relative h-full rounded-md px-2 py-4">
             <img
               style={getLqipStyle(category.image)}
-              src={category.image}
+              src={withBase(category.image)}
               alt={category.label}
               loading="lazy"
               decoding="async"

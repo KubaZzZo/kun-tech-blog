@@ -1,4 +1,5 @@
 ---
+import { withBase } from '@lib/base-path';
 import type { PageMeta } from './page-meta';
 
 interface Props {
@@ -24,7 +25,7 @@ import { defaultLocale, getAlternateUrl, getHtmlLang, isI18nEnabled, localeList,
 const { meta } = Astro.props;
 const { locale, title, description, openGraph, robots, includeLocaleAlternates = true } = meta;
 
-const resolveAbsoluteUrl = (value: string | undefined) => (value ? new URL(value, Astro.site).href : undefined);
+const resolveAbsoluteUrl = (value: string | undefined) => (value ? new URL(withBase(value), Astro.site).href : undefined);
 
 const ogImage = resolveAbsoluteUrl(openGraph?.image) ?? getOgImageUrl(meta.coverImage, Astro.site);
 const ogTitle = openGraph?.title ?? title;
@@ -63,7 +64,7 @@ const portraitHero =
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<link rel="icon" type="image/svg+xml" href="/img/kun-avatar.svg" />
+<link rel="icon" type="image/svg+xml" href={withBase('/img/kun-avatar.svg')} />
 <meta name="generator" content={Astro.generator} />
 {heroImages.length > 0 && <link rel="preload" as="image" type="image/avif" media={portraitHero ? wideHeroMedia : undefined} imagesrcset={heroImages.map(({ width, image }) => `${image.src} ${width}w`).join(', ')} imagesizes="100vw" fetchpriority="high" />}
 {portraitHero && <link rel="preload" as="image" type="image/avif" media={portraitHeroMedia} href={portraitHero.src} imagesrcset={portraitHero.srcSet.attribute} fetchpriority="high" />}

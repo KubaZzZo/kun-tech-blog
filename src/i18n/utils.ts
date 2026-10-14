@@ -5,6 +5,7 @@
  * Designed as pure functions for testability and SSR compatibility.
  */
 
+import { stripBase, withBase } from '@lib/base-path';
 import { defaultLocale, isLocaleSupported } from './config';
 import { translations } from './translations';
 import { uiStrings as defaultStrings } from './translations/zh';
@@ -87,7 +88,7 @@ function tryTranslate(locale: Locale, key: string, params?: TranslationParams): 
  * ```
  */
 export function getLocaleFromUrl(pathname: string): Locale {
-  const segments = pathname.split('/').filter(Boolean);
+  const segments = stripBase(pathname).split('/').filter(Boolean);
   const firstSegment = segments[0];
 
   if (firstSegment && firstSegment !== defaultLocale && isLocaleSupported(firstSegment)) {
@@ -112,13 +113,14 @@ export function getLocaleFromUrl(pathname: string): Locale {
  */
 export function localizedPath(path: string, locale: Locale = defaultLocale): string {
   // Ensure path starts with /
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const unscopedPath = stripBase(path);
+  const normalizedPath = unscopedPath.startsWith('/') ? unscopedPath : `/${unscopedPath}`;
 
   if (locale === defaultLocale) {
-    return normalizedPath;
+    return withBase(normalizedPath);
   }
 
-  return `/${locale}${normalizedPath}`;
+  return withBase(`/${locale}${normalizedPath}`);
 }
 
 /**
@@ -132,7 +134,8 @@ export function localizedPath(path: string, locale: Locale = defaultLocale): str
  * ```
  */
 export function stripLocaleFromPath(pathname: string): string {
-  const segments = pathname.split('/').filter(Boolean);
+  const unscopedPath = stripBase(pathname);
+  const segments = unscopedPath.split('/').filter(Boolean);
   const firstSegment = segments[0];
 
   if (firstSegment && firstSegment !== defaultLocale && isLocaleSupported(firstSegment)) {
@@ -140,7 +143,7 @@ export function stripLocaleFromPath(pathname: string): string {
     return rest ? `/${rest}` : '/';
   }
 
-  return pathname;
+  return unscopedPath;
 }
 
 /**

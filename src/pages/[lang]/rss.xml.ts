@@ -1,5 +1,6 @@
 import rss from '@astrojs/rss';
 import { siteConfig } from '@constants/site-config';
+import { withBase } from '@lib/base-path';
 import { getCategoryArr, getPostSlug, getSortedPosts } from '@lib/content';
 import { encodeSlug } from '@lib/route';
 import { buildRssItemFields } from '@lib/rss-utils';
@@ -22,10 +23,10 @@ export async function GET(context: APIContext) {
   const response = await rss({
     title: siteConfig.title,
     description: siteConfig.subtitle || 'No description',
-    site,
+    site: new URL(withBase('/'), site),
     trailingSlash: false,
     customData: `<language>${getHtmlLang(lang)}</language>`,
-    stylesheet: '/rss/feed.xsl',
+    stylesheet: withBase('/rss/feed.xsl'),
     items: posts.slice(0, 20).map((post: BlogPost) => {
       const categoryArr = getCategoryArr(post.data.categories?.[0]);
       const categories = [

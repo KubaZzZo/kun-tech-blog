@@ -1,3 +1,4 @@
+import { withBase } from '@lib/base-path';
 /**
  * Site configuration assembly layer.
  *
@@ -35,7 +36,10 @@ import { DEFAULT_ROUTERS, RESERVED_ROUTES } from './router';
 
 export { contentConfig, editorConfig, i18nConfig, motionConfig, siteConfig };
 
-export const socialConfig: SocialConfig = yamlConfig.social ?? {};
+const configuredSocial: SocialConfig = yamlConfig.social ?? {};
+export const socialConfig: SocialConfig = Object.fromEntries(
+  Object.entries(configuredSocial).map(([name, config]) => [name, { ...config, url: withBase(config.url) }]),
+);
 
 // ICP filing config — normalize string shorthand to { text } object
 export const icpConfig: { text: string; link?: string } | undefined = (() => {

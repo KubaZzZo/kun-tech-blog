@@ -29,6 +29,7 @@ import { normalizeMomentsConfig } from './src/lib/config/moments.ts';
 import { RESERVED_ROUTES } from './src/lib/config/reserved-routes.ts';
 import { lazyMermaid } from './src/lib/markdown/lazy-mermaid.ts';
 import { mermaidThemeCSS } from './src/lib/markdown/mermaid-theme.ts';
+import { rehypeBasePath } from './src/lib/markdown/rehype-base-path.ts';
 import { rehypeEncryptedBlock } from './src/lib/markdown/rehype-encrypted-block.ts';
 import { rehypeEncryptedPost } from './src/lib/markdown/rehype-encrypted-post.ts';
 import { rehypeImagePlaceholder } from './src/lib/markdown/rehype-image-placeholder.ts';
@@ -52,6 +53,7 @@ function loadConfigForAstro() {
 }
 
 const yamlConfig = loadConfigForAstro();
+const siteUrl = new URL(yamlConfig.site.url);
 const editorConfig = normalizeEditorConfig(yamlConfig.editor);
 
 // Bundle analysis mode: ANALYZE=true pnpm build
@@ -216,13 +218,15 @@ if (contentConfig.enableEncryptedBlock) {
 }
 
 // Shiki transformers
+rehypePlugins.push([rehypeBasePath, { base: siteUrl.pathname }]);
 const shikiTransformers = [];
 if (contentConfig.enableCodeMeta) shikiTransformers.push(shokaMetaTransformer());
 if (contentConfig.enhanceCodeBlock) shikiTransformers.push(collapsibleCodeTransformer());
 
 // https://astro.build/config
 export default defineConfig({
-  site: yamlConfig.site.url,
+  site: siteUrl.origin,
+  base: siteUrl.pathname,
   output: 'static',
   compressHTML: true,
   markdown: {
@@ -343,5 +347,5 @@ export default defineConfig({
     // Visible-link prefetch competes with the current page's cold load.
     defaultStrategy: 'hover',
   },
-  trailingSlash: 'ignore',
+  trailingSlash: 'always',
 });

@@ -23,7 +23,9 @@ pnpm dev
 
 `draft: true` 不进入正式站点。`sticky: true` 会置顶。修改文章时可添加 `updated` 日期。
 
-Git 推送只更新源码；当前 Sites 地址的发布仍需站点发布流程。连接自己的 GitHub 仓库时，已准备好的 `.github/workflows/pages.yml` 能在 push 到 `main` 后构建并部署 GitHub Pages。首次在仓库 Settings → Pages 选择 GitHub Actions，将 `config/site.yaml` 的 `site.url` 改为最终网址。请使用 `用户名.github.io` 仓库或独立域名；默认根路径部署，不支持直接无配置部署到项目子路径。
+正式博客地址：https://kubazzzo.github.io/kun-tech-blog/ 。仓库已启用 GitHub Actions 发布：推送到 `main` 后会自动检查、构建并部署 GitHub Pages，也可以在 Actions 中手动运行发布工作流。
+
+`config/site.yaml` 的 `site.url` 同时决定域名和部署子路径。更换域名时修改此项；内部导航、图片、字体、RSS 和搜索会使用对应路径。当前 Sites 地址仍通过 Sites 的发布流程更新。
 
 ## 常用配置
 
