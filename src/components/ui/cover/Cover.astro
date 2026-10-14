@@ -1,5 +1,6 @@
 ---
 import ColophonMeta from '@components/post/colophon/ColophonMeta.astro';
+import WallpaperPicker from '@components/theme/WallpaperPicker.astro';
 import { Routes } from '@constants/router';
 import { createArticleStatsConfig, motionConfig, siteConfig } from '@constants/site-config';
 import { colophonItemsAt } from '@lib/content/colophon';
@@ -160,6 +161,7 @@ const copyFailedLabel = t(locale, 'common.copyFailed');
       decoding="async"
     /> : <img src={defaultHeroImage} srcset={defaultHeroSrcset} alt="" class="h-full w-full object-cover" width="1928" height="1080" sizes="100vw" loading="eager" fetchpriority="high" decoding="async" />}
   </div>
+  {!data && !title && <WallpaperPicker />}
   <WaveSvg />
 </div>
 

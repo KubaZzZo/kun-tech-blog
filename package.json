@@ -2,7 +2,7 @@
   "name": "astro-koharu",
   "type": "module",
   "version": "7.7.4",
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@11.25.0",
   "engines": {
     "node": ">=22.20.0"
   },
@@ -14,7 +14,7 @@
     "generate:summaries": "npx tsx src/scripts/generateSummaries.ts",
     "generate:summaries:force": "npx tsx src/scripts/generateSummaries.ts --force",
     "generate:all": "npm run generate:lqips && npm run generate:summaries && npm run generate:similarities",
-    "build": "pnpm koharu migrate --check && astro build",
+    "build": "pnpm koharu migrate --check && astro build && node scripts/package-personal-source.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
@@ -28,7 +28,7 @@
     "change": "git cliff --bump -o CHANGELOG.md",
     "prepare": "husky",
     "knip": "knip",
-    "koharu": "npx tsx scripts/koharu.tsx",
+    "koharu": "node --import tsx scripts/koharu.tsx",
     "migrate": "pnpm koharu migrate",
     "save-slugs": "npx tsx scripts/save-slugs.ts",
     "test": "npm run test:workspace && npm run test:config && npm run test:markdown && npm run test:meting && npm run test:umami && npm run test:toc && npm run test:lightbox && npm run test:glide && npm run test:drawer && npm run test:diagram && npm run test:migrate && npm run test:moments && npm run test:motion && npm run test:index",

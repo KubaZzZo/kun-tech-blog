@@ -1,0 +1,13 @@
+---
+import { animeWallpapers } from '@constants/anime-wallpapers';
+---
+
+<div class="anime-wallpaper" aria-hidden="true" transition:persist="anime-wallpaper"></div>
+<script is:inline define:vars={{ wallpapers: animeWallpapers }}>
+  // Set the saved artwork before the first paint, including when storage is disabled.
+  let wallpaperId = 'one-piece';
+  try { wallpaperId = localStorage.getItem('kun-wallpaper') || wallpaperId; } catch {}
+  const selected = wallpapers.find((item) => item.id === wallpaperId) || wallpapers[0];
+  document.documentElement.style.setProperty('--anime-wallpaper', 'url("' + selected.image + '")');
+  document.documentElement.dataset.wallpaper = selected.id;
+</script>

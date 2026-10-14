@@ -20,7 +20,6 @@ import Sonda from 'sonda/vite';
 import { loadEnv } from 'vite';
 import svgr from 'vite-plugin-svgr';
 import YAML from 'yaml';
-import { editorIntegration } from './src/features/editor/integration.ts';
 import { momentsRoutes } from './src/features/moments/integration/momentsRoutes.ts';
 import { normalizeContentConfig } from './src/lib/config/content.ts';
 import { normalizeEditorConfig } from './src/lib/config/editor.ts';
@@ -242,7 +241,7 @@ export default defineConfig({
     },
   },
   integrations: [
-    ...(editorConfig.enabled ? [editorIntegration()] : []),
+    ...(editorConfig.enabled ? [(await import('./src/features/editor/integration.ts')).editorIntegration()] : []),
     {
       name: 'content-hydration',
       hooks: {

@@ -3,14 +3,6 @@
  * Never throws: failures are returned as an `error` field so callers can cache them.
  */
 
-import metascraper from 'metascraper';
-import metascraperDescription from 'metascraper-description';
-import metascraperImage from 'metascraper-image';
-import metascraperLogo from 'metascraper-logo';
-import metascraperLogoFavicon from 'metascraper-logo-favicon';
-import metascraperTitle from 'metascraper-title';
-import metascraperUrl from 'metascraper-url';
-
 export interface OGData {
   originUrl: string;
   url: string;
@@ -30,14 +22,25 @@ const TIMEOUT_MS = 5000; // 5 second timeout (most sites respond within 1-2s)
 // with a bounded wait.
 const FAVICON_PROBE = { retry: 0, timeout: TIMEOUT_MS };
 
-const scraper = metascraper([
-  metascraperDescription(),
-  metascraperImage(),
-  metascraperLogo(),
-  metascraperTitle(),
-  metascraperUrl(),
-  metascraperLogoFavicon({ gotOpts: FAVICON_PROBE }),
-]);
+async function loadScraper() {
+  const [core, description, image, logo, title, url, favicon] = await Promise.all([
+    import('metascraper'),
+    import('metascraper-description'),
+    import('metascraper-image'),
+    import('metascraper-logo'),
+    import('metascraper-title'),
+    import('metascraper-url'),
+    import('metascraper-logo-favicon'),
+  ]);
+  return core.default([
+    description.default(),
+    image.default(),
+    logo.default(),
+    title.default(),
+    url.default(),
+    favicon.default({ gotOpts: FAVICON_PROBE }),
+  ]);
+}
 
 /**
  * Fetch OG data from a URL at build time using metascraper.
@@ -73,6 +76,7 @@ export async function fetchOGData(url: string): Promise<OGData> {
     }
 
     const html = await response.text();
+    const scraper = await loadScraper();
     const metadata = await scraper({ html, url });
 
     return {

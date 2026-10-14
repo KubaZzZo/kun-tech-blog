@@ -22,12 +22,14 @@ import SearchDialog from '@components/layout/SearchDialog';
 import SearchPortal from '@components/layout/SearchPortal.astro';
 import ArticleViewers from '@components/markdown/ArticleViewers';
 import SettingsPanel from '@components/settings/SettingsPanel';
+import AnimeWallpaper from '@components/theme/AnimeWallpaper.astro';
 import { Toaster } from '@components/ui/sonner';
 import { bgmConfig } from '@constants/site-config';
 
 const { post, siderType, isPostPage, articleTools = true } = Astro.props;
 ---
 
+<AnimeWallpaper />
 <ChristmasEffects transition:persist="christmas-snowfall" />
 <div class="flex min-h-screen flex-col text-black dark:text-white">
   <Header isPostPage={isPostPage} tocNumbering={post?.data.tocNumbering ?? true} />

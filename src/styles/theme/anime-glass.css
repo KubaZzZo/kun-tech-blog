@@ -1,0 +1,252 @@
+/* Personal skin over Koharu. Keep article paper denser than decorative cards. */
+:root {
+  --anime-wallpaper: url("/img/anime/one-piece.webp");
+  --glass-surface: rgb(250 253 255 / 0.84);
+  --glass-card: rgb(255 255 255 / 0.68);
+  --glass-border: rgb(255 255 255 / 0.65);
+  --glass-shadow: 0 12px 42px rgb(10 25 55 / 0.12);
+  --gradient-bg-start: #f6faff;
+  --gradient-bg-end: #eaf1ff;
+  --primary: 203 76% 40%;
+  --badge-primary: 205 72% 34%;
+}
+.dark {
+  --glass-surface: rgb(17 28 46 / 0.9);
+  --glass-card: rgb(23 35 56 / 0.73);
+  --glass-border: rgb(194 221 255 / 0.15);
+  --glass-shadow: 0 12px 42px rgb(0 5 20 / 0.28);
+  --gradient-bg-start: #111c2e;
+  --gradient-bg-end: #121a2c;
+  --primary: 200 90% 76%;
+  --badge-primary: 201 90% 78%;
+}
+html,
+body {
+  background: transparent;
+}
+body {
+  isolation: isolate;
+}
+.anime-wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: #192f4a var(--anime-wallpaper) center / cover no-repeat;
+}
+.anime-wallpaper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(7 24 51 / 0.12), rgb(12 39 70 / 0.16) 45%, rgb(17 31 57 / 0.34));
+}
+.dark .anime-wallpaper::after {
+  background: rgb(4 12 26 / 0.4);
+}
+.cover-hero {
+  height: 62svh;
+  min-height: 440px;
+  max-height: 650px;
+}
+#banner-box,
+.cover-hero .wave-wrap {
+  display: none;
+}
+.cover-scrim {
+  background: radial-gradient(ellipse 62% 62% at 50% 48%, rgb(5 22 46 / 0.25), transparent 85%);
+}
+.cover-copy {
+  bottom: 4svh;
+}
+.cover-copy h1 {
+  font-size: clamp(2rem, 4.2vw, 4rem);
+  letter-spacing: 0.12em;
+}
+.cover-copy h2 {
+  font-size: 1rem;
+  letter-spacing: 0.55em;
+}
+.cover-copy p {
+  text-shadow: 0 2px 12px rgb(0 15 38 / 0.8);
+}
+.two-column-content {
+  position: relative;
+  gap: 24px;
+  padding: 0 24px 28px;
+  margin-top: -28px;
+}
+.two-column-content > .sider-column {
+  padding: 1.35rem 1.05rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 22px;
+  background: var(--glass-surface);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(24px);
+}
+.sider-column::after {
+  display: none;
+}
+.two-column-content > div > .bg-gradient-start,
+.index-surface {
+  border: 1px solid var(--glass-border);
+  border-radius: 22px;
+  background: var(--glass-surface);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(22px);
+}
+.two-column-content > div > .home-glass-surface {
+  background: rgb(248 253 255 / 0.58);
+  backdrop-filter: blur(16px);
+}
+.dark .two-column-content > div > .home-glass-surface {
+  background: rgb(14 26 47 / 0.56);
+}
+.post-item-card {
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  background: var(--glass-card);
+  box-shadow: 0 4px 18px rgb(20 48 85 / 0.06);
+  transition:
+    translate 220ms ease,
+    box-shadow 220ms ease;
+}
+.dark .post-item-card {
+  background: var(--glass-card);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .post-item-card:hover {
+    translate: 0 -3px;
+    box-shadow: 0 12px 28px rgb(20 48 85 / 0.12);
+  }
+}
+.post-item-cover {
+  width: 36%;
+  clip-path: none;
+}
+.post-item-cover + div {
+  width: 64%;
+}
+.post-item-card h2 {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+}
+#site-header.with-background::before {
+  background: var(--glass-surface);
+  backdrop-filter: blur(22px);
+}
+.two-column-content footer {
+  padding: 1.5rem 0;
+  border-radius: 18px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-surface);
+  backdrop-filter: blur(20px);
+}
+.wallpaper-picker {
+  position: absolute;
+  bottom: 54px;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid rgb(255 255 255 / 0.32);
+  border-radius: 999px;
+  background: rgb(15 34 63 / 0.32);
+  color: white;
+  backdrop-filter: blur(20px);
+  transform: translateX(-50%);
+}
+.wallpaper-picker-label {
+  padding: 0 10px;
+  font-size: 11px;
+  color: rgb(255 255 255 / 0.86);
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+}
+.wallpaper-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 13px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
+  transition: background-color 180ms ease;
+}
+.wallpaper-choice:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+.wallpaper-choice[aria-pressed="true"] {
+  background: rgb(255 255 255 / 0.92);
+  color: #1c4766;
+}
+.wallpaper-choice-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.75;
+}
+.prose {
+  line-height: 1.95;
+}
+.two-column-content .prose {
+  text-shadow: none;
+}
+@media (width <= 992px) {
+  .two-column-content {
+    padding-inline: 18px;
+  }
+}
+@media (width <= 767px) {
+  .cover-hero {
+    min-height: 380px;
+    height: 57svh;
+  }
+  .cover-copy {
+    bottom: 60px;
+  }
+  .wallpaper-picker {
+    bottom: 50px;
+    max-width: calc(100% - 24px);
+    gap: 2px;
+    padding: 5px;
+  }
+  .wallpaper-picker-label {
+    display: none;
+  }
+  .wallpaper-choice {
+    padding: 9px 11px;
+    font-size: 11px;
+  }
+  .two-column-content {
+    padding-inline: 12px;
+  }
+  .post-item-cover,
+  .post-item-cover + div {
+    width: 100%;
+  }
+  .post-item-cover {
+    height: 170px;
+  }
+  .two-column-content > div > .bg-gradient-start,
+  .index-surface {
+    border-radius: 18px;
+  }
+  .two-column-content footer {
+    margin-inline: 0;
+  }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  :root {
+    --glass-surface: #f6faff;
+    --glass-card: #fff;
+  }
+  .dark {
+    --glass-surface: #111c2e;
+    --glass-card: #172338;
+  }
+}

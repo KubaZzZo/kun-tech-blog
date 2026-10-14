@@ -1,3 +1,10 @@
 packages:
   - '.'
   - 'cms'
+allowBuilds:
+  esbuild: true
+  sharp: true
+  re2: false
+  protobufjs: true
+  nice-napi: true
+  onnxruntime-node: false

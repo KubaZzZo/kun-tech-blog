@@ -1,0 +1,51 @@
+---
+import { animeWallpapers } from '@constants/anime-wallpapers';
+---
+
+<div class="wallpaper-picker" aria-label="选择动漫壁纸" role="group">
+  <span class="wallpaper-picker-label">换个世界</span>
+  {animeWallpapers.map((wallpaper) => (
+    <button type="button" class="wallpaper-choice" data-wallpaper-id={wallpaper.id}
+      data-wallpaper-image={wallpaper.image} data-wallpaper-caption={wallpaper.caption}
+      aria-pressed={wallpaper.id === 'one-piece' ? 'true' : 'false'}>
+      <span class="wallpaper-choice-dot" aria-hidden="true"></span>{wallpaper.name}
+    </button>
+  ))}
+  <span class="sr-only" aria-live="polite" data-wallpaper-status></span>
+</div>
+
+<script>
+  function syncWallpaperButtons() {
+    const id = document.documentElement.dataset.wallpaper || 'one-piece';
+    document.querySelectorAll<HTMLButtonElement>('[data-wallpaper-id]').forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.wallpaperId === id));
+    });
+  }
+  document.addEventListener('click', async (event) => {
+    const button = (event.target as Element | null)?.closest<HTMLButtonElement>('[data-wallpaper-id]');
+    const id = button?.dataset.wallpaperId;
+    const imageUrl = button?.dataset.wallpaperImage;
+    if (!button || !id || !imageUrl) return;
+    // Decode before switching so a slow connection never produces an empty background.
+    const image = new Image();
+    image.src = imageUrl;
+    try { await image.decode(); } catch {
+      const status = document.querySelector('[data-wallpaper-status]');
+      if (status) status.textContent = '壁纸暂时加载失败，请稍后再试。';
+      return;
+    }
+    document.documentElement.style.setProperty('--anime-wallpaper', `url("${imageUrl}")`);
+    document.documentElement.dataset.wallpaper = id;
+    try { localStorage.setItem('kun-wallpaper', id); } catch {}
+    syncWallpaperButtons();
+    const status = document.querySelector('[data-wallpaper-status]');
+    if (status) status.textContent = `已切换为${button.textContent?.trim()}壁纸`;
+  });
+  document.addEventListener('astro:before-swap', (event) => {
+    const next = event.newDocument.documentElement;
+    next.dataset.wallpaper = document.documentElement.dataset.wallpaper;
+    next.style.setProperty('--anime-wallpaper', document.documentElement.style.getPropertyValue('--anime-wallpaper'));
+  });
+  syncWallpaperButtons();
+  document.addEventListener('astro:page-load', syncWallpaperButtons);
+</script>
