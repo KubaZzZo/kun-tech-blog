@@ -1,6 +1,7 @@
 ---
 title: 用 Git 发布一篇新的技术笔记
 date: '2026-10-13 18:01:00'
+updated: '2026-10-14'
 link: git-writing-guide
 description: 从创建 Markdown 文件到提交更新，文章内容、图片和配置都留在自己的源码里。
 cover: /img/anime/naruto-thumb.webp
@@ -63,11 +64,13 @@ git commit -m "docs: add my first note"
 git push
 ```
 
-**Git 负责保存源码，部署流程负责更新网页。** 当前站点由站点发布流程部署；推送到普通 Git 仓库本身不会自动更新这个网址。
+**推送到 `main` 后，GitHub Actions 会自动更新博客。** 当前发布地址是 [坤の技术手记](https://kubazzzo.github.io/kun-tech-blog/)，无需再手动上传网站文件。
 
-如果后续使用自己的 GitHub 仓库与 GitHub Pages，可启用源码中的 `.github/workflows/pages.yml`。首次需在仓库的 Settings → Pages 中选择 GitHub Actions，并将 `config/site.yaml` 的 `site.url` 改成最终网址。工作流会在推送到 `main` 后构建并发布。
+在仓库的 Actions 页面可以查看发布进度。流程依次完成依赖安装、路径测试、类型检查、生产构建和 Pages 部署；绿色成功标记表示这次更新已发布。若流程失败，打开失败的步骤查看原因，修正后重新提交即可。
 
-这个工作流按站点根路径部署。仓库建议命名为 `你的用户名.github.io`，或绑定独立域名；若部署到 `/仓库名/` 子路径，需要另外配置基础路径与资源链接。
+仓库已经在 Settings → Pages 中选择了 GitHub Actions，发布工作流位于 `.github/workflows/pages.yml`。`config/site.yaml` 的 `site.url` 同时提供域名与 `/kun-tech-blog/` 基础路径，导航、图片、字体、RSS 和搜索均已适配。
+
+如果使用早先的 Sites 地址，那个地址仍通过 Sites 的发布流程单独更新。
 
 ## 图片和壁纸
 
