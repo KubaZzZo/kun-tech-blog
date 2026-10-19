@@ -23,7 +23,13 @@ pnpm dev
 
 `draft: true` 不进入正式站点。`sticky: true` 会置顶。修改文章时可添加 `updated` 日期。
 
-正式博客地址：https://kubazzzo.github.io/kun-tech-blog/ 。仓库已启用 GitHub Actions 发布：推送到 `main` 后会自动检查、构建并部署 GitHub Pages，也可以在 Actions 中手动运行发布工作流。
+正式博客地址：https://kun.zhuoruan.xyz 。仓库已启用 GitHub Actions 发布：推送到 `main` 后会自动检查、构建并部署 GitHub Pages，也可以在 Actions 中手动运行发布工作流。
+
+在 GitHub 网页发文：进入 `src/content/blog/`，选择 **Add file → Create new file**，新建 `.md` 文件并写入 frontmatter 和正文，然后提交到 `main`。等 Actions 中的发布任务成功后，文章即会上线。图片可上传到 `public/img/`。`link` 必须唯一，发布后尽量不要更改。
+
+自定义域名配置：仓库 Settings → Pages 的 Custom domain 为 `kun.zhuoruan.xyz`；Cloudflare 中 `kun` 使用 CNAME，目标为 `kubazzzo.github.io`（不包含仓库名或 URL 路径）。首次签发 GitHub Pages 证书时使用 DNS only。证书就绪后启用 Enforce HTTPS。
+
+VPS 上的站点和 Sites 地址是独立发布目标，不会自动跟随 GitHub Pages 更新；域名迁移到 GitHub Pages 后，日常发文只需更新本仓库。
 
 `config/site.yaml` 的 `site.url` 同时决定域名和部署子路径。更换域名时修改此项；内部导航、图片、字体、RSS 和搜索会使用对应路径。当前 Sites 地址仍通过 Sites 的发布流程更新。
 
