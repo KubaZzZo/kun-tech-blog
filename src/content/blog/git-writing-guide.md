@@ -64,11 +64,11 @@ git commit -m "docs: add my first note"
 git push
 ```
 
-**推送到 `main` 后，GitHub Actions 会自动更新博客。** 当前发布地址是 [坤の技术手记](https://kubazzzo.github.io/kun-tech-blog/)，无需再手动上传网站文件。
+**推送到 `main` 后，GitHub Actions 会自动更新博客。** 正式域名是 [坤の技术手记](https://kun.zhuoruan.xyz)，无需再手动上传网站文件。
 
 在仓库的 Actions 页面可以查看发布进度。流程依次完成依赖安装、路径测试、类型检查、生产构建和 Pages 部署；绿色成功标记表示这次更新已发布。若流程失败，打开失败的步骤查看原因，修正后重新提交即可。
 
-仓库已经在 Settings → Pages 中选择了 GitHub Actions，发布工作流位于 `.github/workflows/pages.yml`。`config/site.yaml` 的 `site.url` 同时提供域名与 `/kun-tech-blog/` 基础路径，导航、图片、字体、RSS 和搜索均已适配。
+仓库已经在 Settings → Pages 中选择了 GitHub Actions，发布工作流位于 `.github/workflows/pages.yml`。`config/site.yaml` 的 `site.url` 为 `https://kun.zhuoruan.xyz`，自定义域名使用根路径，导航、图片、字体、RSS 和搜索均随配置生成。
 
 如果使用早先的 Sites 地址，那个地址仍通过 Sites 的发布流程单独更新。
 
