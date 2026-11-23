@@ -318,7 +318,8 @@ export default defineConfig({
         'hast-util-from-html-isomorphic': katexHtmlParser,
         'decode-named-character-reference': markdownEntities,
       },
-      noExternal: ['react-tweet'],
+      // Bundle Astro's transitive cookie dependency so prerendering uses the version Astro requires.
+      noExternal: ['react-tweet', 'cookie'],
     },
     optimizeDeps: {
       include: [

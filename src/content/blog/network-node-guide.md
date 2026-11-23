@@ -3,7 +3,7 @@ title: 网络节点怎么用？我的电脑端入口与常见问题排查
 date: '2026-11-08 20:30:00'
 link: network-node-guide
 description: 整理我在用的节点服务与电脑端下载入口，讲清节点、订阅和客户端的关系，以及连接失败、速度慢和部分软件无法联网时的排查方法。
-cover: /img/anime/ultraman-thumb.webp
+cover: /img/anime/naruto-thumb.webp
 categories: [工具与部署]
 tags: [网络, 节点, 客户端, 问题排查]
 draft: false

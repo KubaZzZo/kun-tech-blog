@@ -3,7 +3,7 @@ title: Hello，新世界
 date: '2026-10-13 18:00:00'
 link: hello-world
 description: 用代码记录探索，用热爱装点自己的小世界。这个技术博客，从今天开始。
-cover: /img/anime/one-piece-thumb.webp
+cover: /img/anime/naruto-thumb.webp
 categories: [站点手记]
 tags: [开站, 博客]
 sticky: true
@@ -26,9 +26,9 @@ colophon: [ai-lead]
 
 文章太多时，可以用导航里的搜索、分类、标签和归档找到它们。
 
-## 换一个喜欢的世界
+## 小站的背景
 
-首页提供四套壁纸：海贼王、火影忍者、奥特曼与死神。点「换个世界」里的名字即可切换，下次访问时会记住当前浏览器的选择。
+小站的背景是《火影忍者》里的木叶村。
 
 透明卡片负责保留壁纸的氛围，文章正文负责让阅读安静下来。也可以在右上角切换明暗模式。
 

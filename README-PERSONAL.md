@@ -35,10 +35,10 @@ VPS 上的站点和 Sites 地址是独立发布目标，不会自动跟随 GitHu
 
 ## 常用配置
 
-- 名称、简介、分类、导航与友链：`config/site.yaml`。
+- `config/site.yaml` 管理名称、简介、分类和导航。
 - 个人介绍：`src/pages/about.md`。
 - 壁纸与缩略图：`public/img/anime/`。
-- 壁纸选项：`src/constants/anime-wallpapers.ts`。
+- `src/components/theme/AnimeWallpaper.astro` 指定全站背景。
 - 玻璃卡片样式：`src/styles/theme/anime-glass.css`。
 
 首次交付采用「坤の技术手记」作为可修改的名称；四篇开站说明与排版示例可以改写或删除。示例文章已标注 AI 起草，不是用户历史文章。

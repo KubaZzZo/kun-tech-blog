@@ -3,7 +3,7 @@ title: Markdown 排版实验室：代码、公式与图表
 date: '2026-10-13 18:02:00'
 link: markdown-lab
 description: 一篇可以直接照着写的排版示例，检查代码高亮、数学公式、表格和流程图的展示效果。
-cover: /img/anime/bleach-thumb.webp
+cover: /img/anime/naruto-thumb.webp
 categories: [技术笔记]
 tags: [Markdown, 代码, KaTeX, Mermaid]
 colophon: [ai-lead]

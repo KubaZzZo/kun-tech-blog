@@ -1,6 +1,5 @@
 /* Personal skin over Koharu. Keep article paper denser than decorative cards. */
 :root {
-  --anime-wallpaper: url("/img/anime/one-piece.webp");
   --glass-surface: rgb(250 253 255 / 0.84);
   --glass-card: rgb(255 255 255 / 0.68);
   --glass-border: rgb(255 255 255 / 0.65);
@@ -143,53 +142,6 @@ body {
   background: var(--glass-surface);
   backdrop-filter: blur(20px);
 }
-.wallpaper-picker {
-  position: absolute;
-  bottom: 54px;
-  left: 50%;
-  z-index: 2;
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  padding: 8px;
-  border: 1px solid rgb(255 255 255 / 0.32);
-  border-radius: 999px;
-  background: rgb(15 34 63 / 0.32);
-  color: white;
-  backdrop-filter: blur(20px);
-  transform: translateX(-50%);
-}
-.wallpaper-picker-label {
-  padding: 0 10px;
-  font-size: 11px;
-  color: rgb(255 255 255 / 0.86);
-  white-space: nowrap;
-  letter-spacing: 0.1em;
-}
-.wallpaper-choice {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 13px;
-  border-radius: 999px;
-  font-size: 12px;
-  white-space: nowrap;
-  transition: background-color 180ms ease;
-}
-.wallpaper-choice:hover {
-  background: rgb(255 255 255 / 0.12);
-}
-.wallpaper-choice[aria-pressed="true"] {
-  background: rgb(255 255 255 / 0.92);
-  color: #1c4766;
-}
-.wallpaper-choice-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: currentColor;
-  opacity: 0.75;
-}
 .prose {
   line-height: 1.95;
 }
@@ -208,19 +160,6 @@ body {
   }
   .cover-copy {
     bottom: 60px;
-  }
-  .wallpaper-picker {
-    bottom: 50px;
-    max-width: calc(100% - 24px);
-    gap: 2px;
-    padding: 5px;
-  }
-  .wallpaper-picker-label {
-    display: none;
-  }
-  .wallpaper-choice {
-    padding: 9px 11px;
-    font-size: 11px;
   }
   .two-column-content {
     padding-inline: 12px;

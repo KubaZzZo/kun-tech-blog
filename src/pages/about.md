@@ -20,7 +20,7 @@ comments: false
 
 ### 我喜欢的世界
 
-火影忍者、海贼王、奥特曼与死神。首页的「换个世界」可以切换壁纸，选择会保存在当前浏览器中。
+小站以《火影忍者》里的木叶村作为背景。
 
 ### 关于这个博客
 
@@ -33,8 +33,5 @@ comments: false
 ### 图片来源
 
 - [火影忍者：木叶村](https://wall.alphacoders.com/big.php?i=96267)
-- [海贼王：千阳号航海](https://wallspic.com/es/image/171682-yendo_feliz-de_una_sola_pieza-mil_soleado-anime-agua)
-- [奥特曼：城市与光](https://hdqwalls.com/wallpaper/3840x2160/netflix-ultraman-2023-4k)
-- [死神：瀞灵廷的夕阳](https://www.peakpx.com/en/hd-wallpaper-desktop-owhao)
 
 壁纸原作与插画权益归相应权利人所有。

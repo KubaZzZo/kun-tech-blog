@@ -20,7 +20,7 @@ site:
   showLogo: false
   author: 坤
   url: https://kun.zhuoruan.xyz
-  defaultOgImage: /img/anime/one-piece.webp
+  defaultOgImage: /img/anime/naruto.webp
   startYear: 2026
   timezone: Asia/Shanghai
   keywords:
@@ -52,11 +52,11 @@ featuredCategories:
   description: 记录起点，慢慢生长
 - link: notes
   label: 技术笔记
-  image: /img/anime/bleach-thumb.webp
+  image: /img/anime/naruto-thumb.webp
   description: 代码、公式与思考
 - link: tools
   label: 工具与部署
-  image: /img/anime/ultraman-thumb.webp
+  image: /img/anime/naruto-thumb.webp
   description: 让工具替你做重复的事
 
 featuredSeries: []
@@ -66,26 +66,6 @@ social:
     url: /rss.xml
     icon: ri:rss-line
     color: '#4298ba'
-
-friends:
-  groups:
-  - id: following
-    title: 喜欢的小站
-    description: 单向推荐，感谢它们带来的灵感。
-  intro:
-    title: 友人帐
-    subtitle: 与有趣的灵魂相遇
-    applyTitle: 一起交换友链
-    applyDesc: 想交换友链时，可以先在这里收藏对方的小站。
-    exampleYaml: "- site: 博客名称\n  url: https://example.com\n  owner: 昵称\n  desc: 一句话介绍\n  image: https://example.com/avatar.webp"
-  data:
-  - site: 余弦の博客
-    url: https://blog.cosine.ren
-    owner: cos
-    desc: 这个小站的设计灵感与 Koharu 主题来源。
-    image: https://blog.cosine.ren/img/avatar.webp
-    group: following
-    color: '#ed788b'
 
 announcements: []
 
@@ -211,9 +191,6 @@ navigation:
   - name: 归档
     path: /archives
     icon: ri:archive-2-fill
-- name: 友人帐
-  path: /friends
-  icon: ri:links-line
 - name: 关于
   path: /about
   icon: fa6-regular:circle-user
@@ -273,6 +250,3 @@ dev:
 
 defaultCoverList:
 - /img/anime/naruto-thumb.webp
-- /img/anime/one-piece-thumb.webp
-- /img/anime/ultraman-thumb.webp
-- /img/anime/bleach-thumb.webp

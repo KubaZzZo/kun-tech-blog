@@ -80,7 +80,7 @@ git push
 ![图片说明](/img/my-project.webp)
 ```
 
-四套壁纸在 `public/img/anime/`；壁纸名称与路径在 `src/constants/anime-wallpapers.ts`。替换文件后重新构建即可。
+木叶村壁纸和缩略图在 `public/img/anime/`。全站背景路径在 `src/components/theme/AnimeWallpaper.astro`，替换图片后重新构建即可。
 
 ## 常用文章属性
 
