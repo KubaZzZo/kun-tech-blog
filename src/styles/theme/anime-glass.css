@@ -82,6 +82,9 @@ body {
   box-shadow: var(--glass-shadow);
   backdrop-filter: blur(24px);
 }
+.home-avatar img {
+  object-position: center 20%;
+}
 .sider-column::after {
   display: none;
 }
